@@ -2,6 +2,8 @@ package com.nc1.testapp.newscronparsingapp.service;
 
 import com.nc1.testapp.newscronparsingapp.exception.PeriodNotFoundException;
 import com.nc1.testapp.newscronparsingapp.model.News;
+import com.nc1.testapp.newscronparsingapp.model.dto.NewsRequestDto;
+import com.nc1.testapp.newscronparsingapp.model.mapper.impl.NewsMapperImpl;
 import com.nc1.testapp.newscronparsingapp.repository.NewsRepository;
 import com.nc1.testapp.newscronparsingapp.utils.DayPeriodLimitsEnum;
 import java.time.LocalDate;
@@ -21,6 +23,9 @@ public class NewsService {
 
     @Autowired
     private TimePeriodService periodService;
+
+    @Autowired
+    private NewsMapperImpl mapper;
 
     public List<News> getNewsForPeriod(String period) {
         LocalDateTime start = null;
@@ -47,5 +52,14 @@ public class NewsService {
 
     public void deleteNews(Long id) {
         newsRepository.deleteById(id);
+    }
+
+    public int saveNewsScheduledTask(List<NewsRequestDto> newsList) {
+        int counter = 0;
+        for (NewsRequestDto dtoModel : newsList) {
+            saveNews(mapper.toModel(dtoModel));
+            counter++;
+        }
+        return counter;
     }
 }

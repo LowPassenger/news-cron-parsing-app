@@ -9,6 +9,11 @@ public class AppConstants {
 // Test resource for parsing. First in Google search
     public static final String SITE_FOR_PARSING = "https://www.nbcnews.com/";
 
+//    Html blocs to select on news page
+    public static final String NEWS_BLOCKS_TO_SELECT = "div[class*=styles_title__]";
+    public static final String NEWS_HEADLINE_HTML_TAG = "h2";
+    public static final String NEWS_DESCRIPTION_HTML_TAG = "p";
+
 //    Current time period for parsing is 20 min
     public static final String NEWS_PARSING_TIME_PERIOD = "0 */20 * * * *";
 
