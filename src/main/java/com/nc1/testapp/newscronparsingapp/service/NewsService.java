@@ -62,4 +62,11 @@ public class NewsService {
         }
         return counter;
     }
+
+    public List<News> getTodayNews() {
+        LocalDate today = LocalDate.now();
+        LocalDateTime startOfDay = today.atStartOfDay();
+        LocalDateTime enfOfDay = today.atTime(LocalTime.MAX);
+        return newsRepository.findTodayNews(startOfDay, enfOfDay);
+    }
 }
