@@ -77,7 +77,8 @@ public class JavaFXModule {
             updateButtonsState(prevButton, nextButton);
         });
 
-        Scene scene = new Scene(root, 400, 300);
+        Scene scene = new Scene(root, AppConstants.JAVAFX_WINDOW_WIDTH,
+                AppConstants.JAVAFX_WINDOW_HEIGHT);
         stage.setScene(scene);
         stage.show();
     }
@@ -91,7 +92,8 @@ public class JavaFXModule {
                     .append(periodTimeLimits[0].toString())
                     .append(" - ")
                     .append(periodTimeLimits[1].toString())
-                    .append(") ");
+                    .append(") ")
+                    .append(System.lineSeparator());
         }
         return periodsInformation.toString();
     }

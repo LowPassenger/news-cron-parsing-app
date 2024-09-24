@@ -1,5 +1,6 @@
 package com.nc1.testapp.common.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,7 +17,9 @@ public class News {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "headline", length = 600, unique = true)
     private String headline;
+    @Column(name = "description", length = 600, unique = true)
     private String description;
     private LocalDateTime publicationTime;
 }

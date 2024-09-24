@@ -4,7 +4,6 @@ import com.nc1.testapp.common.model.dto.NewsRequestDto;
 import com.nc1.testapp.common.utils.AppConstants;
 import com.nc1.testapp.server.parser.NewsParser;
 import com.nc1.testapp.server.service.NewsService;
-import java.io.IOException;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

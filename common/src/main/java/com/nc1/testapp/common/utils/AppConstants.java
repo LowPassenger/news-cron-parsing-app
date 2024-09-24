@@ -15,7 +15,7 @@ public class AppConstants {
     public static final String NEWS_DESCRIPTION_HTML_TAG = "p";
 
 //    Current time period for parsing is 20 min
-    public static final String NEWS_PARSING_TIME_PERIOD = "0 */2 * * * *";
+    public static final String NEWS_PARSING_TIME_PERIOD = "0 */20 * * * *";
 
 //    LocalDateTime formatter. European date format, no ':' delimiters
 //    No Zoned localization for the test task
@@ -34,10 +34,15 @@ public class AppConstants {
 //    URL for Server API connection to Server module for getting news at some period
 
     public static final String SERVER_API_URL_FOR_LOCAL_SERVER =
-            "http://localhost:8080/api/news/period?period=";
+            "http://localhost:8081/api/news/period?period=";
 
 //    Period names for Client API for using in URL requests
     public static final String URL_REQUEST_MORNING_PERIOD_NAME = "morning";
     public static final String URL_REQUEST_DAY_PERIOD_NAME = "day";
     public static final String URL_REQUEST_EVENING_PERIOD_NAME = "evening";
+
+//    JavaFX parameter's
+//    Window size, proportions Width * Height are 4 * 3
+    public static final double JAVAFX_WINDOW_WIDTH = 800D;
+    public static final double JAVAFX_WINDOW_HEIGHT = 600D;
 }

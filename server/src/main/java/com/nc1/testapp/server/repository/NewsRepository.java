@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 public interface NewsRepository extends JpaRepository<News, Long> {
     List<News> findByPublicationTimeBetween(LocalDateTime startTime, LocalDateTime endTime);
 
-    @Query("SELECT n.publicationTime FROM News n ORDER BY n.id DESC")
+    @Query("SELECT n.publicationTime FROM News n ORDER BY n.id DESC LIMIT 1")
     LocalDateTime findLatestPublicationTime();
 
     @Query("SELECT n FROM News n WHERE n.publicationTime >= :startOfDay "

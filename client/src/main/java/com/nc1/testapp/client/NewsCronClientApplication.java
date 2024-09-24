@@ -5,11 +5,14 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 
-@SpringBootApplication(scanBasePackages = {"com.nc1.testapp.common", "com.nc1.testapp.client"})
-public class NewsCronClientAppApplication extends Application {
+@SpringBootApplication(exclude = {WebMvcAutoConfiguration.class},
+        scanBasePackages = {"com.nc1.testapp.common", "com.nc1.testapp.client",
+                "com.nc1.testapp.server"})
+public class NewsCronClientApplication extends Application {
 
     private ConfigurableApplicationContext context;
 
@@ -20,7 +23,7 @@ public class NewsCronClientAppApplication extends Application {
     @Override
     public void init() {
         SpringApplicationBuilder builder =
-                new SpringApplicationBuilder(NewsCronClientAppApplication.class);
+                new SpringApplicationBuilder(NewsCronClientApplication.class);
         context = builder.run();
     }
 
