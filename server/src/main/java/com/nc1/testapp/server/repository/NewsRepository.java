@@ -13,7 +13,7 @@ public interface NewsRepository extends JpaRepository<News, Long> {
     @Query("SELECT n.publicationTime FROM News n ORDER BY n.id DESC")
     LocalDateTime findLatestPublicationTime();
 
-    @Query("SELECT n FROM News n WHERE n.publicationTime >= :startOdDay "
+    @Query("SELECT n FROM News n WHERE n.publicationTime >= :startOfDay "
             + "AND n.publicationTime <= :endOfDay")
     List<News> findTodayNews(@Param("startOfDay") LocalDateTime startOfDay,
                              @Param("endOfDay") LocalDateTime endOfDay);

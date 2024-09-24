@@ -1,6 +1,5 @@
 package com.nc1.testapp.client;
 
-import com.nc1.testapp.client.controller.NewsControllerFX;
 import com.nc1.testapp.client.view.JavaFXModule;
 import javafx.application.Application;
 import javafx.application.Platform;

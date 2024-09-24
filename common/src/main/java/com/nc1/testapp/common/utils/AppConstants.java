@@ -6,16 +6,16 @@ public class AppConstants {
     private AppConstants() {
 //        This is util class, not for instantiate!
     }
-// Test resource for parsing. First in Google search
-    public static final String SITE_FOR_PARSING = "https://www.nbcnews.com/";
+// Test resource for parsing. Plain text news site
+    public static final String SITE_FOR_PARSING = "https://www.csmonitor.com/text_edition";
 
 //    Html blocs to select on news page
-    public static final String NEWS_BLOCKS_TO_SELECT = "div[class*=styles_title__]";
-    public static final String NEWS_HEADLINE_HTML_TAG = "h2";
+    public static final String NEWS_BLOCKS_TO_SELECT = "ul.list-unstyled > li\n";
+    public static final String NEWS_HEADLINE_HTML_TAG = "span";
     public static final String NEWS_DESCRIPTION_HTML_TAG = "p";
 
 //    Current time period for parsing is 20 min
-    public static final String NEWS_PARSING_TIME_PERIOD = "0 */20 * * * *";
+    public static final String NEWS_PARSING_TIME_PERIOD = "0 */2 * * * *";
 
 //    LocalDateTime formatter. European date format, no ':' delimiters
 //    No Zoned localization for the test task
