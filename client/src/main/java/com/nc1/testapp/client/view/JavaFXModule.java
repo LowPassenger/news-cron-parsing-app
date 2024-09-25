@@ -6,6 +6,7 @@ import com.nc1.testapp.common.model.mapper.impl.NewsMapperImpl;
 import com.nc1.testapp.common.utils.AppConstants;
 import com.nc1.testapp.common.utils.DayPeriodLimitsEnum;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -37,12 +38,17 @@ public class JavaFXModule {
         BorderPane root = new BorderPane();
 
         ComboBox<String> timePeriodComboBox = new ComboBox<>();
-        timePeriodComboBox.getItems().addAll(getInformationAboutTimePeriods());
+        timePeriodComboBox.getItems().addAll(getTimePeriodsOptions());
         timePeriodComboBox.setValue(getInformationAboutDefaultPeriod());
         root.setTop(timePeriodComboBox);
 
-        Label newsLabel = new Label(commonNewsList.get(currentIndex).getHeadline());
-        root.setCenter(newsLabel);
+        Label headlineLabel = new Label();
+        Label newsLabel = new Label();
+        updateNewsLabels(headlineLabel, newsLabel);
+        BorderPane newsPane = new BorderPane();
+        newsPane.setTop(headlineLabel);
+        newsPane.setCenter(newsLabel);
+        root.setCenter(newsPane);
 
         Button prevButton = new Button("←");
         Button nextButton = new Button("→");
@@ -83,19 +89,15 @@ public class JavaFXModule {
         stage.show();
     }
 
-    private String getInformationAboutTimePeriods() {
-        StringBuilder periodsInformation = new StringBuilder();
+    private List<String> getTimePeriodsOptions() {
+        List<String> outputList = new ArrayList<>();
         for (DayPeriodLimitsEnum period : DayPeriodLimitsEnum.values()) {
             LocalTime[] periodTimeLimits = period.getDayPeriodLimits();
-            periodsInformation.append(period.name())
-                    .append(" (")
-                    .append(periodTimeLimits[0].toString())
-                    .append(" - ")
-                    .append(periodTimeLimits[1].toString())
-                    .append(") ")
-                    .append(System.lineSeparator());
+            String periodInformation = period.name() + " (" + periodTimeLimits[0].toString()
+                    + " - " + periodTimeLimits[1].toString() + ") ";
+            outputList.add(periodInformation);
         }
-        return periodsInformation.toString();
+        return outputList;
     }
 
     private String getInformationAboutDefaultPeriod() {
@@ -103,6 +105,14 @@ public class JavaFXModule {
         LocalTime[] defaultPeriodTimeLimits = defaultPeriod.getDayPeriodLimits();
         return defaultPeriod.name().toLowerCase() + " (" + defaultPeriodTimeLimits[0].toString()
                 + " - " + defaultPeriodTimeLimits[1].toString() + ") ";
+    }
+
+    private void updateNewsLabels(Label headlineLabel, Label newsLabel) {
+        if (!commonNewsList.isEmpty()) {
+            NewsResponseDto currentNews = commonNewsList.get(currentIndex);
+            headlineLabel.setText(currentNews.getHeadline());
+            newsLabel.setText(currentNews.getDescription());
+        }
     }
 
     private void updateButtonsState(Button prevButton, Button nextButton) {

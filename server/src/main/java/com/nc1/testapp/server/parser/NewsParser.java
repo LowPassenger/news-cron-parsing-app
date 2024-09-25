@@ -37,6 +37,4 @@ public class NewsParser {
         }
         return newsList;
     }
-
-
 }
